@@ -1,216 +1,23 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmy Dialogue</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            overflow: hidden; 
-            background-color: #000;
-        }
-        
-        #start-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            color: white;
-            display: grid;
-            place-items: center;
-            z-index: 10;
-            cursor: pointer;
-            text-align: center;
-            transition: opacity 0.5s ease;
-        }
-        
-        #start-overlay h2 {
-            font-size: clamp(1.5rem, 4vw, 3rem);
-        }
-        
-        #start-overlay p {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            margin-top: 10px;
-            opacity: 0.8;
-        }
-
-        .scrolling-background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-        }
-
-        .scrolling-images {
-            column-count: 4;
-            column-gap: 15px;
-            padding: 15px;
-            animation: scroll-up 120s linear infinite; 
-        }
-
-        .scrolling-images img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-            filter: brightness(0.6);
-            display: block; 
-        }
-
-        @keyframes scroll-up {
-            0% { 
-                transform: translateY(0); 
-            }
-            100% { 
-                transform: translateY(-50%); 
-            }
-        }
-
-        .main-content {
-            display: grid;
-            place-items: center;
-            height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .main-content h1 {
-            font-size: clamp(2.5rem, 6vw, 7rem);
-            color: red;
-            font-weight: bold;
-            -webkit-text-stroke: 2px black;
-            text-stroke: 2px black;
-            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-        }
-        
-        @media (max-width: 768px) {
-            .scrolling-images {
-                column-count: 2;
-            }
-        }
-    </style>
+    <title>Bollywood Dialogue</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div id="start-overlay">
-        <div>
-            <h2>Click anywhere to enter</h2>
-            <p>(Music will start automatically)</p>
+    <div class="main-container">
+        <div class="text-container">
+            <p>डायलॉग तोह भोत फिल्मी मारे है बेरी</p>
         </div>
     </div>
 
-    <div class="scrolling-background-container">
-        <div class="scrolling-images">
-            <img id="img-0" src="" alt="Collage Image">
-            <img id="img-1" src="" alt="Collage Image">
-            <img id="img-2" src="" alt="Collage Image">
-            <img id="img-3" src="" alt="Collage Image">
-            <img id="img-4" src="" alt="Collage Image">
-            <img id="img-5" src="" alt="Collage Image">
-            <img id="img-6" src="" alt="Collage Image">
-            <img id="img-7" src="" alt="Collage Image">
-            <img id="img-8" src="" alt="Collage Image">
-            <img id="img-9" src="" alt="Collage Image">
-            <img id="img-10" src="" alt="Collage Image">
-            <img id="img-11" src="" alt="Collage Image">
-            <img id="img-12" src="" alt="Collage Image">
-            <img id="img-13" src="" alt="Collage Image">
-            <img id="img-14" src="" alt="Collage Image">
-            <img id="img-15" src="" alt="Collage Image">
-            <img id="img-16" src="" alt="Collage Image">
-            <img id="img-17" src="" alt="Collage Image">
-            <img id="img-18" src="" alt="Collage Image">
-            <img id="img-19" src="" alt="Collage Image">
-            <img id="img-20" src="" alt="Collage Image">
-            <img id="img-21" src="" alt="Collage Image">
-            <img id="img-22" src="" alt="Collage Image">
-            <img id="img-23" src="" alt="Collage Image">
-            <img id="img-24" src="" alt="Collage Image">
-            <img id="img-25" src="" alt="Collage Image">
-            <img id="img-26" src="" alt="Collage Image">
-            <img id="img-27" src="" alt="Collage Image">
-            <img id="img-28" src="" alt="Collage Image">
-            <img id="img-29" src="" alt="Collage Image">
+    <div class="background-images-container">
         </div>
-    </div>
 
-    <div class="main-content">
-        <h1>डायलॉग तोह भोत फिल्मी मारे है बेरी</h1>
-    </div>
+    <audio id="background-music" src="music.mp3" autoplay loop></audio>
 
-    <audio id="background-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
-    <script>
-        const startOverlay = document.getElementById('start-overlay');
-        const backgroundMusic = document.getElementById('background-music');
-
-        // CORRECTED: All 15 filenames are now 100% accurate to your GitHub files
-        const imageFilenames = [
-            "0ec903022dc81c65e7decb829ecf9fc5%20(1).jpg",
-            "20e96b694615b89d1ce54d58a902e733.jpg",
-            "24b3a5871cdd975483ea8c96c88fe8d5.jpg",
-            "3119e584ab10338b5ac8034950604f71.jpg",
-            "6a60c77058430d741d1c11375694e521.jpg",
-            "84b8ab69cdda640392d3a5f2cd5079f0.jpg",
-            "86f237fb3ba6d7effd9d6475903b6e5a.jpg",
-            "8b88ddda75d24edfb78baccd6435ec0%20(1).jpg",
-            "8e3e20491ad219f0c691bb2fb198c3",
-            "95b116411a8f2576a7f953abf61a8b79",
-            "9807cf8bfd518ac7c1b8f5a2e2976",
-            "d2a1c0647eb3e62cd9e1799f96c40",
-            "dd5566d9c79f81a9e394610d697e8c12",
-            "e85748a755a572023a1edb39d8b92007",
-            "fe9fa1273794d7e3238d5b2419dae845"
-        ];
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function setRandomImages() {
-            const shuffledImages = [...imageFilenames];
-            shuffleArray(shuffledImages);
-
-            // Assign to the first set of 15 images
-            for (let i = 0; i < shuffledImages.length; i++) {
-                document.getElementById(`img-${i}`).src = shuffledImages[i];
-            }
-            // Assign the same shuffled order to the second set for a perfect loop
-            for (let i = 0; i < shuffledImages.length; i++) {
-                document.getElementById(`img-${i + shuffledImages.length}`).src = shuffledImages[i];
-            }
-        }
-
-        // Call the function when the page loads
-        setRandomImages();
-
-        startOverlay.addEventListener('click', () => {
-          backgroundMusic.play();
-          startOverlay.style.opacity = '0';
-          setTimeout(() => {
-            startOverlay.style.display = 'none';
-          }, 500);
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
