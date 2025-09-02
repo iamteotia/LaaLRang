@@ -62,9 +62,7 @@
             column-count: 4;
             column-gap: 15px;
             padding: 15px;
-            
-            /* DURATION CHANGED FROM 120s to 60s FOR 2x SPEED */
-            animation: scroll-up 60s linear infinite;
+            animation: scroll-up 60s linear infinite; /* Still 2x speed */
         }
 
         .scrolling-images img {
@@ -72,6 +70,8 @@
             height: auto;
             margin-bottom: 15px;
             filter: brightness(0.6);
+            /* To avoid layout shifts, if images have varying aspect ratios */
+            display: block; 
         }
 
         @keyframes scroll-up {
@@ -118,24 +118,23 @@
     </div>
 
     <div class="scrolling-background-container">
-        <div class="scrolling-images">
-            <img src="8b88ddda75d24edfb78baccd6435ec0%20(1).jpg" alt="Collage Image 1">
-            <img src="0ec903022dc81c65e7decb829ecf9fc5%20(1).jpg" alt="Collage Image 2">
-            <img src="fe9fa1273794d7e3238d5b2419dae845.jpg" alt="Collage Image 3">
-            <img src="e85748a755a572023a1edb39d8b92007.jpg" alt="Collage Image 4">
-            <img src="24b3a5871cdd975483ea8c96c88fe8d5.jpg" alt="Collage Image 5">
-            <img src="84b8ab69cdda640392d3a5f2cd5079f0.jpg" alt="Collage Image 6">
-            <img src="dd5566d9c79f81a9e394610d697e8c12.jpg" alt="Collage Image 7">
-            <img src="20e96b694615b89d1ce54d58a902e733.jpg" alt="Collage Image 8">
-
-            <img src="8b88ddda75d24edfb78baccd6435ec0%20(1).jpg" alt="Collage Image 1">
-            <img src="0ec903022dc81c65e7decb829ecf9fc5%20(1).jpg" alt="Collage Image 2">
-            <img src="fe9fa1273794d7e3238d5b2419dae845.jpg" alt="Collage Image 3">
-            <img src="e85748a755a572023a1edb39d8b92007.jpg" alt="Collage Image 4">
-            <img src="24b3a5871cdd975483ea8c96c88fe8d5.jpg" alt="Collage Image 5">
-            <img src="84b8ab69cdda640392d3a5f2cd5079f0.jpg" alt="Collage Image 6">
-            <img src="dd5566d9c79f81a9e394610d697e8c12.jpg" alt="Collage Image 7">
-            <img src="20e96b694615b89d1ce54d58a902e733.jpg" alt="Collage Image 8">
+        <div class="scrolling-images" id="collage-images">
+            <img id="img-0" src="" alt="Collage Image">
+            <img id="img-1" src="" alt="Collage Image">
+            <img id="img-2" src="" alt="Collage Image">
+            <img id="img-3" src="" alt="Collage Image">
+            <img id="img-4" src="" alt="Collage Image">
+            <img id="img-5" src="" alt="Collage Image">
+            <img id="img-6" src="" alt="Collage Image">
+            <img id="img-7" src="" alt="Collage Image">
+            <img id="img-8" src="" alt="Collage Image">
+            <img id="img-9" src="" alt="Collage Image">
+            <img id="img-10" src="" alt="Collage Image">
+            <img id="img-11" src="" alt="Collage Image">
+            <img id="img-12" src="" alt="Collage Image">
+            <img id="img-13" src="" alt="Collage Image">
+            <img id="img-14" src="" alt="Collage Image">
+            <img id="img-15" src="" alt="Collage Image">
         </div>
     </div>
 
@@ -152,6 +151,46 @@
         const startOverlay = document.getElementById('start-overlay');
         const backgroundMusic = document.getElementById('background-music');
 
+        // Array of your image filenames
+        const imageFilenames = [
+            "8b88ddda75d24edfb78baccd6435ec0%20(1).jpg",
+            "0ec903022dc81c65e7decb829ecf9fc5%20(1).jpg",
+            "fe9fa1273794d7e3238d5b2419dae845.jpg",
+            "e85748a755a572023a1edb39d8b92007.jpg",
+            "24b3a5871cdd975483ea8c96c88fe8d5.jpg",
+            "84b8ab69cdda640392d3a5f2cd5079f0.jpg",
+            "dd5566d9c79f81a9e394610d697e8c12.jpg",
+            "20e96b694615b89d1ce54d58a902e733.jpg"
+        ];
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+        // Function to set random images
+        function setRandomImages() {
+            const shuffledImages = [...imageFilenames]; // Create a copy to shuffle
+            shuffleArray(shuffledImages);
+
+            // Assign to the first set of 8 images
+            for (let i = 0; i < imageFilenames.length; i++) {
+                document.getElementById(`img-${i}`).src = shuffledImages[i];
+            }
+
+            // Assign to the second set of 8 images (for seamless looping)
+            // You can re-shuffle or repeat the first shuffle, repeating is simpler for loop
+            for (let i = 0; i < imageFilenames.length; i++) {
+                document.getElementById(`img-${i + imageFilenames.length}`).src = shuffledImages[i];
+            }
+        }
+
+        // Call setRandomImages when the page loads
+        setRandomImages();
+
         startOverlay.addEventListener('click', () => {
           backgroundMusic.play();
           startOverlay.style.opacity = '0';
@@ -163,4 +202,3 @@
 
 </body>
 </html>
-
