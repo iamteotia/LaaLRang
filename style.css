@@ -7,28 +7,40 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: 'Arial', sans-serif;
-    background-color: #000;
+    background-color: #000; /* Keeps a black background behind the collage */
 }
 
 .main-container {
     z-index: 10; /* Ensures text is on top of images */
     position: relative;
     text-align: center;
+    padding: 10px; /* Add some padding to prevent text from touching screen edges on mobile */
 }
 
 .text-container {
-    border: 5px solid black;
+    /* Removed background-color: rgba(255, 255, 255, 0.8); */
+    border: none; /* Removed the solid black border as we are now outlining text */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for readability */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    /* You can keep a subtle box-shadow if you want, but it's less impactful without a background */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .text-container p {
     color: red;
-    font-size: 3em;
+    font-size: 3em; /* Will be adjusted by media queries for responsiveness */
     font-weight: bold;
     margin: 0;
-    white-space: nowrap; /* Prevents text from wrapping */
+    white-space: nowrap; /* Prevents text from wrapping by default */
+    /* Black outline for the red text */
+    text-shadow:
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        2px 2px 0 #000,
+        -3px 0 0 #000,
+        3px 0 0 #000,
+        0 -3px 0 #000,
+        0 3px 0 #000;
 }
 
 .background-images-container {
@@ -47,15 +59,19 @@ body, html {
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    animation: scroll-up 60s linear infinite; /* Adjust time for speed */
+    /* The animation will be applied dynamically in JS for better control */
+    animation: scroll-up 60s linear infinite; /* Default speed, can be adjusted */
+    padding-bottom: 100vh; /* Ensure enough content to scroll seamlessly */
 }
 
 .background-images-container .image-collage img {
-    width: 200px; /* Adjust size as needed */
+    width: 180px; /* Slightly smaller for better collage effect */
     height: auto;
-    margin: 10px;
+    max-width: 90%; /* Ensure images don't overflow on small screens */
+    margin: 8px; /* Slightly smaller margin */
     border-radius: 8px; /* Optional: adds rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    object-fit: cover; /* Ensures images cover their area without distortion */
 }
 
 @keyframes scroll-up {
@@ -63,6 +79,28 @@ body, html {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(-100%); /* Moves images up */
+        transform: translateY(-50%); /* Scroll up by half the collage height for seamless loop */
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .text-container p {
+        font-size: 2em; /* Smaller font size for tablets and larger phones */
+        white-space: normal; /* Allow text to wrap on smaller screens */
+    }
+    .background-images-container .image-collage img {
+        width: 120px; /* Smaller images on mobile */
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-container p {
+        font-size: 1.5em; /* Even smaller font size for small phones */
+    }
+    .background-images-container .image-collage img {
+        width: 100px; /* Even smaller images on very small screens */
+        margin: 3px;
     }
 }
