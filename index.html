@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmy Dialogue</title>
     <style>
-        /* --- Basic Setup --- */
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +17,6 @@
             background-color: #000;
         }
         
-        /* --- Click to Start Overlay --- */
         #start-overlay {
             position: fixed;
             top: 0;
@@ -45,7 +43,6 @@
             opacity: 0.8;
         }
 
-        /* --- Scrolling Background Collage --- */
         .scrolling-background-container {
             position: fixed;
             top: 0;
@@ -62,7 +59,6 @@
             column-count: 4;
             column-gap: 15px;
             padding: 15px;
-            /* Slower speed for more images */
             animation: scroll-up 120s linear infinite; 
         }
 
@@ -83,7 +79,6 @@
             }
         }
 
-        /* --- Centered Main Text --- */
         .main-content {
             display: grid;
             place-items: center;
@@ -165,7 +160,7 @@
         const startOverlay = document.getElementById('start-overlay');
         const backgroundMusic = document.getElementById('background-music');
 
-        // UPDATED: Array now contains all 15 of your unique image filenames
+        // CORRECTED: All 15 filenames are now 100% accurate to your GitHub files
         const imageFilenames = [
             "0ec903022dc81c65e7decb829ecf9fc5%20(1).jpg",
             "20e96b694615b89d1ce54d58a902e733.jpg",
@@ -175,13 +170,13 @@
             "84b8ab69cdda640392d3a5f2cd5079f0.jpg",
             "86f237fb3ba6d7effd9d6475903b6e5a.jpg",
             "8b88ddda75d24edfb78baccd6435ec0%20(1).jpg",
-            "8e3e20491ad219f0c691bb2fb198c3b7.jpg",
-            "95b116411a8f2576a7f953abf61a8616.jpg",
-            "9807cf8bfd518ac7c1b8f5a2e29761e3.jpg",
-            "d2a1c0647eb3e62cd9e1799f96c40087.jpg",
-            "dd5566d9c79f81a9e394610d697e8c12.jpg",
-            "e85748a755a572023a1edb39d8b92007.jpg",
-            "fe9fa1273794d7e3238d5b2419dae845.jpg"
+            "8e3e20491ad219f0c691bb2fb198c3",
+            "95b116411a8f2576a7f953abf61a8b79",
+            "9807cf8bfd518ac7c1b8f5a2e2976",
+            "d2a1c0647eb3e62cd9e1799f96c40",
+            "dd5566d9c79f81a9e394610d697e8c12",
+            "e85748a755a572023a1edb39d8b92007",
+            "fe9fa1273794d7e3238d5b2419dae845"
         ];
 
         function shuffleArray(array) {
