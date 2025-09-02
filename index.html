@@ -14,7 +14,6 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* Changed to hide vertical overflow */
             overflow: hidden; 
             background-color: #000;
         }
@@ -46,7 +45,7 @@
             opacity: 0.8;
         }
 
-        /* --- Scrolling Background Collage (UPDATED) --- */
+        /* --- Scrolling Background Collage --- */
         .scrolling-background-container {
             position: fixed;
             top: 0;
@@ -55,36 +54,31 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-            /* Adding a subtle fade at the top and bottom */
             mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
         }
 
         .scrolling-images {
-            /* This is the key change: creates the masonry collage effect */
             column-count: 4;
             column-gap: 15px;
             padding: 15px;
             
-            /* Apply the new vertical animation */
-            animation: scroll-up 120s linear infinite;
+            /* DURATION CHANGED FROM 120s to 60s FOR 2x SPEED */
+            animation: scroll-up 60s linear infinite;
         }
 
         .scrolling-images img {
-            /* Images now fit the columns, with their own aspect ratio */
             width: 100%;
             height: auto;
-            margin-bottom: 15px; /* Space between images in the same column */
-            filter: brightness(0.6); /* Slightly darker to make text pop */
+            margin-bottom: 15px;
+            filter: brightness(0.6);
         }
 
-        /* Keyframe animation updated for vertical scroll */
         @keyframes scroll-up {
             0% { 
                 transform: translateY(0); 
             }
             100% { 
-                /* Seamless loop logic: moves up by exactly half its total height */
                 transform: translateY(-50%); 
             }
         }
@@ -107,10 +101,9 @@
             text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
         }
         
-        /* Media query for smaller screens */
         @media (max-width: 768px) {
             .scrolling-images {
-                column-count: 2; /* Use 2 columns on tablets and phones */
+                column-count: 2;
             }
         }
     </style>
@@ -170,3 +163,4 @@
 
 </body>
 </html>
+
