@@ -14,7 +14,8 @@
 
         body {
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
+            /* Changed to hide vertical overflow */
+            overflow: hidden; 
             background-color: #000;
         }
         
@@ -29,10 +30,10 @@
             color: white;
             display: grid;
             place-items: center;
-            z-index: 10; /* Ensures it's on top of everything */
+            z-index: 10;
             cursor: pointer;
             text-align: center;
-            transition: opacity 0.5s ease; /* Smooth fade-out effect */
+            transition: opacity 0.5s ease;
         }
         
         #start-overlay h2 {
@@ -45,7 +46,7 @@
             opacity: 0.8;
         }
 
-        /* --- Scrolling Background Collage --- */
+        /* --- Scrolling Background Collage (UPDATED) --- */
         .scrolling-background-container {
             position: fixed;
             top: 0;
@@ -54,25 +55,38 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            /* Adding a subtle fade at the top and bottom */
+            mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
         }
 
         .scrolling-images {
-            display: flex;
-            height: 100%;
-            width: fit-content;
-            animation: scroll-left 80s linear infinite;
+            /* This is the key change: creates the masonry collage effect */
+            column-count: 4;
+            column-gap: 15px;
+            padding: 15px;
+            
+            /* Apply the new vertical animation */
+            animation: scroll-up 120s linear infinite;
         }
 
         .scrolling-images img {
-            height: 100vh;
-            width: auto;
-            margin-right: 5px;
-            filter: brightness(0.7);
+            /* Images now fit the columns, with their own aspect ratio */
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px; /* Space between images in the same column */
+            filter: brightness(0.6); /* Slightly darker to make text pop */
         }
 
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* Keyframe animation updated for vertical scroll */
+        @keyframes scroll-up {
+            0% { 
+                transform: translateY(0); 
+            }
+            100% { 
+                /* Seamless loop logic: moves up by exactly half its total height */
+                transform: translateY(-50%); 
+            }
         }
 
         /* --- Centered Main Text --- */
@@ -91,6 +105,13 @@
             -webkit-text-stroke: 2px black;
             text-stroke: 2px black;
             text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .scrolling-images {
+                column-count: 2; /* Use 2 columns on tablets and phones */
+            }
         }
     </style>
 </head>
@@ -139,16 +160,11 @@
         const backgroundMusic = document.getElementById('background-music');
 
         startOverlay.addEventListener('click', () => {
-          // Play the music
           backgroundMusic.play();
-          
-          // Fade out the overlay
           startOverlay.style.opacity = '0';
-          
-          // After the fade out, remove the overlay completely
           setTimeout(() => {
             startOverlay.style.display = 'none';
-          }, 500); // 500ms matches the CSS transition time
+          }, 500);
         });
     </script>
 
