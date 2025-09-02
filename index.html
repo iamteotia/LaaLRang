@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmy Dialogue</title>
+    <style>
+        /* --- Basic Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* This prevents the horizontal scrollbar caused by the animation */
+            overflow-x: hidden;
+            background-color: #000; /* Fallback background color */
+        }
+
+        /* --- Scrolling Background Collage --- */
+        .scrolling-background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Puts the background behind the text */
+            overflow: hidden; /* Ensures no content spills out */
+        }
+
+        .scrolling-images {
+            display: flex;
+            height: 100%;
+            /* The width is determined by the content (all images side-by-side) */
+            width: fit-content;
+            /* Animation properties: name, duration, timing-function, iteration-count */
+            animation: scroll-left 80s linear infinite;
+        }
+
+        .scrolling-images img {
+            height: 100vh; /* Makes each image as tall as the viewport */
+            width: auto;   /* Maintains the image's aspect ratio */
+            /* Adds a bit of space between images */
+            margin-right: 5px;
+            /* Adds a subtle filter to make text more readable on top */
+            filter: brightness(0.7);
+        }
+
+        /* --- Keyframe Animation for Scrolling --- */
+        @keyframes scroll-left {
+            0% {
+                /* Starts at the beginning */
+                transform: translateX(0);
+            }
+            100% {
+                /* Moves left by exactly half the total width, creating a seamless loop */
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- Centered Main Text --- */
+        .main-content {
+            display: grid;
+            place-items: center; /* A simple way to center content vertically and horizontally */
+            height: 100vh; /* Takes up the full height of the screen */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            font-size: clamp(2.5rem, 6vw, 7rem); /* Responsive font size */
+            color: red;
+            font-weight: bold;
+            /* This is the best way to create a text border */
+            -webkit-text-stroke: 2px black;
+            text-stroke: 2px black;
+            /* Adds a shadow to make the text pop */
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* --- Audio Player --- */
+        /* Hiding the default audio player as the music should be in the background */
+        .background-audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scrolling-background-container">
+        <div class="scrolling-images">
+            <img src="https://i.pinimg.com/564x/f3/7a/7b/f37a7b822d655f48bb83a54b3c9ac317.jpg" alt="Collage Image 1">
+            <img src="https://i.pinimg.com/564x/28/99/d0/2899d08405e3f43b67557ebc899a1949.jpg" alt="Collage Image 2">
+            <img src="https://i.pinimg.com/564x/39/3c/65/393c65c843377742b78a9c240bb9310d.jpg" alt="Collage Image 3">
+            <img src="https://i.pinimg.com/564x/93/25/11/93251141703664d60c4a4560731fa147.jpg" alt="Collage Image 4">
+            <img src="https://i.pinimg.com/564x/0f/52/56/0f5256e6d1f562bd3d772986f788b6bb.jpg" alt="Collage Image 5">
+            <img src="https://i.pinimg.com/564x/b8/67/75/b86775f0a7114c0a52f48da25334407b.jpg" alt="Collage Image 6">
+            <img src="https://i.pinimg.com/564x/3d/08/9b/3d089b251214c7d0d09995c721b021d7.jpg" alt="Collage Image 7">
+            <img src="https://i.pinimg.com/564x/87/b6/c4/87b6c430e37119f44a362f6d214a1a7c.jpg" alt="Collage Image 8">
+
+            <img src="https://i.pinimg.com/564x/f3/7a/7b/f37a7b822d655f48bb83a54b3c9ac317.jpg" alt="Collage Image 1">
+            <img src="https://i.pinimg.com/564x/28/99/d0/2899d08405e3f43b67557ebc899a1949.jpg" alt="Collage Image 2">
+            <img src="https://i.pinimg.com/564x/39/3c/65/393c65c843377742b78a9c240bb9310d.jpg" alt="Collage Image 3">
+            <img src="https://i.pinimg.com/564x/93/25/11/93251141703664d60c4a4560731fa147.jpg" alt="Collage Image 4">
+            <img src="https://i.pinimg.com/564x/0f/52/56/0f5256e6d1f562bd3d772986f788b6bb.jpg" alt="Collage Image 5">
+            <img src="https://i.pinimg.com/564x/b8/67/75/b86775f0a7114c0a52f48da25334407b.jpg" alt="Collage Image 6">
+            <img src="https://i.pinimg.com/564x/3d/08/9b/3d089b251214c7d0d09995c721b021d7.jpg" alt="Collage Image 7">
+            <img src="https://i.pinimg.com/564x/87/b6/c4/87b6c430e37119f44a362f6d214a1a7c.jpg" alt="Collage Image 8">
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>डायलॉग तोह भोत फिल्मी मारे है बेरी</h1>
+    </div>
+
+    <audio class="background-audio" autoplay loop>
+        <source src="https://hindi2.djpunjab.app/load/d04v9TJ0MqUAvvkZMIWpfQ==/Bhaang%20Ragad%20Ke.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+</body>
+</html>
